@@ -7,7 +7,6 @@ const NoteApp = () => {
   const [editingIndex, setEditingIndex] = useState(-1);
 
   useEffect(() => {
-    // Load notes from local storage on app load
     const storedNotes = localStorage.getItem('notes');
     if (storedNotes) {
       setNotes(JSON.parse(storedNotes));
@@ -17,12 +16,10 @@ const NoteApp = () => {
   const saveNote = () => {
     if (currentNote.trim() !== '') {
       if (editingIndex === -1) {
-        // New note
         const updatedNotes = [...notes, currentNote.trim()];
         setNotes(updatedNotes);
         localStorage.setItem('notes', JSON.stringify(updatedNotes));
       } else {
-        // Editing existing note
         const updatedNotes = [...notes];
         updatedNotes[editingIndex] = currentNote.trim();
         setNotes(updatedNotes);
